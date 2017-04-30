@@ -1,35 +1,35 @@
 package todo.ui;
 
-import java.awt.Component;
-import java.util.Iterator;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
+import javax.annotation.PostConstruct;
+import javax.swing.*;
 
+@org.springframework.stereotype.Component
 public class BoxLayoutPanel extends JPanel {
-	/**
-	 * We can't use "components" as the property name, because it conflicts with
-	 * an existing property on the Component superclass.
-	 */
-	private List panelComponents;
-	private int axis;
+    /**
+     * We can't use "components" as the property name, because it conflicts with
+     * an existing property on the Component superclass.
+     */
+    private ItemScrollPane itemScrollPane;
+    private ButtonPanel buttonPanel;
 
-	public void setAxis(int axis) {
-		this.axis = axis;
-	}
+    @Autowired
+    public void setItemScrollPane(ItemScrollPane itemScrollPane) {
+        this.itemScrollPane = itemScrollPane;
+    }
 
-	public void setPanelComponents(List panelComponents) {
-		this.panelComponents = panelComponents;
-	}
+    @Autowired
+    public void setButtonPanel(ButtonPanel buttonPanel) {
+        this.buttonPanel = buttonPanel;
+    }
 
-	public void init() {
+    @PostConstruct
+    public void init() {
 
-		setLayout(new BoxLayout(this, axis));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		for (Iterator iter = panelComponents.iterator(); iter.hasNext();) {
-			Component component = (Component) iter.next();
-			add(component);
-		}
-	}
+        add(itemScrollPane);
+        add(buttonPanel);
+    }
 }

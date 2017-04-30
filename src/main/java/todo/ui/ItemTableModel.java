@@ -1,9 +1,12 @@
 package todo.ui;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.List;
 
+@Component
 public class ItemTableModel extends AbstractTableModel {
 
 	private List itemList;
@@ -20,6 +23,7 @@ public class ItemTableModel extends AbstractTableModel {
 		return "Items";
 	}
 
+	@Value("#{itemList}")
 	public void setItemList(List itemList) {
 		this.itemList = itemList;
 	}

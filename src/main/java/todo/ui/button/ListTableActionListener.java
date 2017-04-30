@@ -1,9 +1,8 @@
 package todo.ui.button;
 
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.List;
-
-import javax.swing.JTable;
 
 public abstract class ListTableActionListener implements ActionListener {
 
